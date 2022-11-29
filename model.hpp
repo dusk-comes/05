@@ -1,22 +1,19 @@
-#include <filesystem>
-#include <memory>
-#include "shape.hpp"
+#include "imodel.hpp"
 #include "data.hpp"
 #include "document.hpp"
 
-class Model
+class Model : IModel
 {
     public:
-        explicit Model();
+        using ID = int;
 
-        std::shared_ptr<Shape> gen_shape(Shape::Type);
-
-        void create_document(std::string_view);
-
-        void import_document(std::filesystem::path);
-
-        void export_document();
+        std::shared_ptr<IGeomPrim> add_object(PrimType) override;
+        void del_object(ID) override;
+        void create_document(std::string_view) override;
+        void import_document(FileFormat) override;
+        void export_document(FileFormat) override;
 
     private:
-        std::unique_ptr<Document> _doc;
+        Document _doc;
+        Data _data;
 };

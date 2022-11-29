@@ -1,13 +1,11 @@
 #include "json_presenter.hpp"
 
-std::unique_ptr<Data> import_(std::filesystem::path file)
+Data JsonPresenter::serialize(std::filesystem::path path)
 {
-    //serialize file
-    return std::make_unique<Data>();
+    return Data();
 }
 
-std::filesystem::path export_(std::string_view filename, std::shared_ptr<Data> data)
+std::filesystem::path JsonPresenter::deserialize(const Data& data)
 {
-    //deserialize data
-    return filename;
+    return "path_to_file";
 }

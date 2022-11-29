@@ -1,12 +1,16 @@
 #include "view.hpp"
-#include <memory>
 
-View::View() : 
-    _canvas{320.0, 240.0}
+View::View() {}
+
+void View::add_listener(std::shared_ptr<IController> ic)
+{
+    _icontroller = ic;
+}
+
+void View::show_object(std::shared_ptr<IGeomPrim> object)
 {
 }
 
-void View::show(Point point, std::shared_ptr<Shape> shape)
+void View::show_message(std::string_view mes)
 {
-    _canvas.paint(point, shape);
 }

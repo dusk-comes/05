@@ -1,6 +1,6 @@
-#include "shape.hpp"
+#include "geomprim.hpp"
 
-class Circle : public Shape
+class Circle : public GeomPrim
 {
     public:
         Circle();

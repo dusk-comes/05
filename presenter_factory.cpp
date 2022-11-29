@@ -1,13 +1,14 @@
 #include "presenter_factory.hpp"
 #include "json_presenter.hpp"
 
-std::unique_ptr<IPresenter> PresenterFactory::createPresenter(IPresenter::Type type)
+std::unique_ptr<IPresenter> PresenterFactory::create(FileFormat format)
 {
-    switch(type)
+    switch(format)
     {
-        case IPresenter::Type::JSON:
-            return std::unique_ptr<JsonPresenter>();
+        case FileFormat::JSON:
+            return std::unique_ptr<IPresenter>(new JsonPresenter());
     }
 
     return nullptr;
-};
+}
+

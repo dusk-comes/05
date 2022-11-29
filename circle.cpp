@@ -1,7 +1,4 @@
 #include "circle.hpp"
-#include "shape.hpp"
+#include "primtype.hpp"
 
-Circle::Circle() :
-    Shape(Shape::Type::CIRCLE)
-{
-}
+Circle::Circle() : GeomPrim(PrimType::CIRCLE) {}

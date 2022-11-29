@@ -1,10 +1,8 @@
-#include <memory>
 #include "ipresenter.hpp"
+#include "file_format.hpp"
+#include <memory>
 
-class PresenterFactory
+struct PresenterFactory
 {
-    public:
-        std::unique_ptr<IPresenter> createPresenter(IPresenter::Type);
+    std::unique_ptr<IPresenter> create(FileFormat);
 };
-
-

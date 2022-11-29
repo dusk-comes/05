@@ -1,16 +1,10 @@
 #pragma once
 
-#include <filesystem>
-#include <memory>
 #include "data.hpp"
+#include "filesystem"
 
 struct IPresenter
 {
-    enum class Type {JSON};
-
-    virtual std::unique_ptr<Data> import_(std::filesystem::path) = 0;
-
-    virtual std::filesystem::path export_(std::string_view, std::shared_ptr<Data>) = 0;
+    virtual Data serialize(std::filesystem::path) = 0;
+    virtual std::filesystem::path deserialize(const Data&) = 0;
 };
-
-

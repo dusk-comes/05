@@ -1,36 +1,42 @@
 #include "model.hpp"
+#include "file_format.hpp"
+#include "igeomprim.hpp"
 #include "ipresenter.hpp"
-#include "shape_factory.hpp"
+#include "primtype.hpp"
+#include "circle.hpp"
 #include "presenter_factory.hpp"
 
-Model::Model() : _doc(new Document()) {}
-
-std::shared_ptr<Shape> Model::gen_shape(Shape::Type type)
+std::shared_ptr<IGeomPrim> Model::add_object(PrimType type)
 {
-    auto shape_factory = ShapeFactory();
+    std::shared_ptr<IGeomPrim> object;
 
-    std::shared_ptr<Shape> shape = shape_factory.createShape(type);
+    switch (type)
+    {
+        case PrimType::CIRCLE:
+            object = std::shared_ptr<IGeomPrim>(new Circle());
+    }
 
-    _doc->add_shape(shape);
+    _data.push_back(object);
 
-    return shape;
+    return object;
 }
 
-void Model::create_document(std::string_view name)
+void Model::create_document(std::string_view docname)
 {
-    _doc->set_name(name);
+    _doc.set_docname(docname);
 }
 
-void Model::import_document(std::filesystem::path p)
+void Model::export_document(FileFormat format)
 {
-    auto presenter_factory = PresenterFactory();
-    auto jp = presenter_factory.createPresenter(IPresenter::Type::JSON);
-    _doc->set_data(jp->import_(p)); 
+    PresenterFactory pf = PresenterFactory();
+    std::unique_ptr<IPresenter> presenter = pf.create(format);
+    presenter->deserialize(_data); 
 }
 
-void Model::export_document()
+void Model::import_document(FileFormat format)
 {
-    auto presenter_factory = PresenterFactory();
-    auto jp = presenter_factory.createPresenter(IPresenter::Type::JSON);
-    jp->export_(_doc->get_name(), _doc->get_data());
+    PresenterFactory pf = PresenterFactory();
+    std::unique_ptr<IPresenter> presenter = pf.create(format);
+    presenter->serialize("file_path");
 }
+    

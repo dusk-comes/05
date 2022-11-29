@@ -1,9 +1,8 @@
-#include <memory>
 #include "ipresenter.hpp"
 
-struct JsonPresenter : IPresenter
+class JsonPresenter : public IPresenter
 {
-    std::unique_ptr<Data> import_(std::filesystem::path);
-
-    std::filesystem::path export_(std::string_view, std::shared_ptr<Data>);
+    public:
+        Data serialize(std::filesystem::path);
+        std::filesystem::path deserialize(const Data&);
 };

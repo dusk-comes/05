@@ -1,15 +1,16 @@
-#include <memory>
-#include "canvas.hpp"
-#include "point.hpp"
-#include "shape.hpp"
+#include "iview.hpp"
 
-class View
+class View : IView
 {
     public:
-        explicit View();
+        View();
 
-        void show(Point, std::shared_ptr<Shape>);
-        
+        void add_listener(std::shared_ptr<IController>) override;
+
+        void show_object(std::shared_ptr<IGeomPrim>) override;
+
+        void show_message(std::string_view) override;
+
     private:
-        Canvas _canvas;
+        std::shared_ptr<IController> _icontroller;
 };

@@ -1,4 +1,4 @@
-src = shape.cpp circle.cpp rectangle.cpp shape_factory.cpp model.cpp document.cpp json_presenter.cpp presenter_factory.cpp view.cpp canvas.cpp
+src = circle.cpp controller.cpp document.cpp geomprim.cpp json_presenter.cpp model.cpp presenter_factory.cpp view.cpp
 
 obj = $(src:.cpp=.o)
 
