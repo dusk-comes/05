@@ -11,7 +11,7 @@ class Controller : IController
         using ID = int;
 
         void do_add_object(PrimType) override;
-        void do_del_object(ID) override;
+        //void do_del_object(ID) override;
         void do_create_document(std::string_view) override;
         void do_import_document(FileFormat) override;
         void do_export_document(FileFormat) override;

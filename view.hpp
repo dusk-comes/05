@@ -3,8 +3,6 @@
 class View : IView
 {
     public:
-        View();
-
         void add_listener(std::shared_ptr<IController>) override;
 
         void show_object(std::shared_ptr<IGeomPrim>) override;
