@@ -6,7 +6,7 @@
 #include "igeomprim.hpp"
 #include "primtype.hpp"
 
-class IController : public std::enable_shared_from_this<IController>
+struct IController : public std::enable_shared_from_this<IController>
 {
     using ID = int;
 

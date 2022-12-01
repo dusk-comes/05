@@ -3,7 +3,7 @@
 #include "imodel.hpp"
 #include "icontroller.hpp"
 
-class Controller : IController 
+class Controller : public IController 
 {
     public:
         Controller(std::shared_ptr<IModel>, std::shared_ptr<IView>);

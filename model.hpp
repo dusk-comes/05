@@ -2,7 +2,7 @@
 #include "data.hpp"
 #include "document.hpp"
 
-class Model : IModel
+class Model : public IModel
 {
     public:
         using ID = int;
